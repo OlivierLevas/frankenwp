@@ -1,5 +1,5 @@
-ARG WORDPRESS_VERSION=latest
-ARG PHP_VERSION=8.4.13
+ARG WORDPRESS_VERSION=6.7.1-php8.3-fpm-alpine
+ARG PHP_VERSION=8.3.16
 ARG USER=www-data
 
 
@@ -17,10 +17,9 @@ RUN CGO_ENABLED=1 \
     CGO_LDFLAGS="$(php-config --ldflags) $(php-config --libs)" \
     xcaddy build \
     --output /usr/local/bin/frankenphp \
-    --with github.com/dunglas/frankenphp=./ \
-    --with github.com/dunglas/frankenphp/caddy=./caddy/ \
+    --with github.com/dunglas/frankenphp \
+    --with github.com/dunglas/frankenphp/caddy \
     --with github.com/dunglas/caddy-cbrotli \
-    # Add extra Caddy modules here
     --with github.com/stephenmiracle/frankenwp/sidekick/middleware/cache=./cache
 
 
@@ -47,6 +46,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ghostscript \
     git \
+    less \
     libcurl4-openssl-dev \
     libjpeg-dev \
     libmemcached-dev \
