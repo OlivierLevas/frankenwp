@@ -1,6 +1,6 @@
 services:
   wordpress:
-    image: wpeverywhere/frankenwp:latest-php8.3
+    image: wpeverywhere/frankenwp:latest-php8.5
     restart: always
     ports:
       - "8100:80" # HTTP
